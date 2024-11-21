@@ -572,12 +572,11 @@ void Server::start()
 
 	// ASCII art for the win!
 	const char *art[] = {
-		R"(.__                       __  .__ )",
-		R"(|  |  __ _______    _____/  |_|__|)",
-		R"(|  | |  |  \__  \  /    \   __\  |)",
-		R"(|  |_|  |  // __ \|   |  \  | |  |)",
-		R"(|____/____/(____  /___|  /__| |__|)",
-		R"(                \/     \/         )",
+		R"( _                   _   _ )",
+		R"(| |_   _  __ _ _ __ | |_(_))",
+		R"(| | | | |/ _` | '_ \| __| |)",
+		R"(| | |_| | (_| | | | | |_| |)",
+		R"(|_|\__,_|\__,_|_| |_|\__|_|)",
 	};
 
 	if (!m_admin_chat) {
@@ -2522,7 +2521,7 @@ bool Server::addMediaFile(const std::string &filename,
 	}
 	// If name is not in a supported format, ignore it
 	const char *supported_ext[] = {
-		".png", ".jpg", ".bmp", ".tga",
+		".png", ".jpg", ".tga",
 		".ogg",
 		".x", ".b3d", ".obj", ".gltf", ".glb",
 		// Translation file formats
@@ -2546,13 +2545,6 @@ bool Server::addMediaFile(const std::string &filename,
 		errorstream << "Server::addMediaFile(): Empty file \""
 				<< filepath << "\"" << std::endl;
 		return false;
-	}
-
-	const char *deprecated_ext[] = { ".bmp", nullptr };
-	if (!removeStringEnd(filename, deprecated_ext).empty())
-	{
-		warningstream << "Media file \"" << filename << "\" is using a"
-			" deprecated format and will stop working in the future." << std::endl;
 	}
 
 	SHA1 sha1;
@@ -4199,7 +4191,7 @@ ModStorageDatabase *Server::openModStorageDatabase(const std::string &world_path
 		warningstream << "/!\\ You are using the old mod storage files backend. "
 			<< "This backend is deprecated and may be removed in a future release /!\\"
 			<< std::endl << "Switching to SQLite3 is advised, "
-			<< "please read http://wiki.minetest.net/Database_backends." << std::endl;
+			<< "please read https://wiki.luanti.org/Database_backends." << std::endl;
 
 	return openModStorageDatabase(backend, world_path, world_mt);
 }
